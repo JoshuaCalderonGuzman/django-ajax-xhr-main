@@ -88,6 +88,7 @@ const addTodo = async (url, payload) => {
       credentials: "same-origin",
       headers: {
         "X-Requested-With": "XMLHttpRequest",
+        //"X-CSRFToken": getCookie("csrftoken"),
       },
       body: JSON.stringify({payload: payload})
    });
