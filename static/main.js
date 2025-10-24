@@ -16,7 +16,7 @@ function getCookie(name) {
 }
 
 
-function getAllTodos(url) {
+/*function getAllTodos(url) {
   
   fetch(url, {
     headers: {
@@ -37,7 +37,7 @@ function getAllTodos(url) {
         todoList.innerHTML += todoHTMLElement;
     });
   });
-}
+}*/
 
 
 
@@ -66,7 +66,7 @@ function getAllTodos(url) {
 };
 
 
-function addTodo(url, payload) {
+/*function addTodo(url, payload) {
   fetch(url, {
     method: "POST",
     credentials: "same-origin",
@@ -80,7 +80,21 @@ function addTodo(url, payload) {
   .then(data => {
     console.log(data);
   });
-}
+}*/
+
+const addTodo = async (url, payload) => {
+   const response = await fetch(url, {
+      method:  "POST",
+      credentials: "same-origin",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({payload: payload})
+   });
+   const data = await response.json();
+   console.log(data);
+   return data;
+};
 
 
 function updateTodo(url, payload) {
