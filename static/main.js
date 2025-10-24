@@ -97,7 +97,7 @@ const addTodo = async (url, payload) => {
 };
 
 
-function updateTodo(url, payload) {
+/*function updateTodo(url, payload) {
   fetch(url, {
     method: "PUT",
     credentials: "same-origin",
@@ -111,7 +111,22 @@ function updateTodo(url, payload) {
   .then(data => {
     console.log(data);
   });
-}
+}*/
+const updateTodo = async (url, payload) => {
+    const response = await fetch(url, {
+      method: "PUT",
+      credentials: "same-origin",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
+      body: JSON.stringify({payload: payload})
+    });
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+};
 
 
 function deleteTodo(url) {
